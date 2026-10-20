@@ -1,0 +1,20 @@
+name = "telegram-bot-relay"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# Chat and user ids are deliberately secrets, never committed here.
+[vars]
+REPLY_CAP = "10"
+HISTORY_SIZE = "20"
+HISTORY_MAX_CHARS = "1000"
+FORWARD_EDITS = "0"
+FORWARD_MEDIA = "1"
+
+[[durable_objects.bindings]]
+name = "CHAT"
+class_name = "ChatRelay"
+
+# SQLite-backed storage is the only Durable Object storage on the Workers Free plan.
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ChatRelay"]

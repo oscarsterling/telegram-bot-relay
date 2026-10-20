@@ -1,0 +1,19 @@
+{
+  "name": "telegram-bot-relay-worker",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": { "test": "node --test test/worker.test.js", "deploy": "wrangler deploy" },
+  "devDependencies": { "wrangler": "4.151.1" },
+  "cloudflare": {
+    "bindings": {
+      "TELEGRAM_WEBHOOK_SECRET": { "description": "Telegram header secret, 1-256 letters, digits, underscores or hyphens." },
+      "WEBHOOK_PATH_SECRET": { "description": "Different random path secret, 16-256 letters, digits, underscores or hyphens." },
+      "AGENT_WEBHOOK_KEY": { "description": "Agent inbox bearer key; only the Worker holds it, never give it to the agent model." },
+      "SENT_API_KEY": { "description": "Key the agent uses for POST /sent only; never the inbox key. Generate with openssl rand -hex 32." },
+      "TELEGRAM_WEBHOOK_URL": { "description": "Agent inbox HTTPS URL with a hostname." },
+      "ALLOWED_CHAT_ID": { "description": "Required integer Telegram group chat id." },
+      "OWNER_USER_ID": { "description": "Required integer Telegram owner user id, also allows owner DMs." }
+    }
+  }
+}

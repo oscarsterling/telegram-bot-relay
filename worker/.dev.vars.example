@@ -1,0 +1,15 @@
+# Telegram secret_token, 1-256 letters, digits, underscores or hyphens.
+TELEGRAM_WEBHOOK_SECRET=""
+# Different random webhook path secret, 16-256 letters, digits, underscores or hyphens.
+WEBHOOK_PATH_SECRET=""
+# Agent inbox bearer key, held only by the inbox platform and Worker.
+AGENT_WEBHOOK_KEY=""
+# Separate key for the agent to POST /sent only, 16-256 letters, digits, underscores or hyphens.
+SENT_API_KEY=""
+# Agent inbox HTTPS URL with a hostname.
+TELEGRAM_WEBHOOK_URL=""
+
+# Required integer Telegram group chat id.
+ALLOWED_CHAT_ID=""
+# Required integer Telegram owner user id.
+OWNER_USER_ID=""

@@ -1,5 +1,9 @@
 # telegram-bot-relay
 
+![telegram-bot-relay](docs/social-card.png)
+
+Built by the team behind [Clelp](https://clelp.ai), a directory of AI tools, MCP servers and skills.
+
 Lets an AI agent that only has an inbound **webhook** (no public server)
 talk in a Telegram group, including with another bot.
 

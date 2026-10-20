@@ -5,12 +5,10 @@ sleeps between tasks can still receive updates immediately through its HTTPS
 inbox. Telegram cannot add the bearer header that inbox needs, so the Worker
 adds it. The Worker never holds the bot token.
 
-> **Before publishing:** replace REPO_URL in the button link below with this repository's public GitHub URL. Until then the button does not work.
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/oscarsterling/telegram-bot-relay/tree/main/worker)
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=REPO_URL/tree/main/worker)
-
-Replace REPO_URL with the public GitHub repository URL. The button works only
-with public GitHub or GitLab repositories. This worker/ folder is self-contained:
+The button creates a copy of this folder in your own GitHub account and deploys it.
+It works only with public GitHub or GitLab repositories. This worker/ folder is self-contained:
 Cloudflare treats the subdirectory as the root of the new repository. See the
 [Deploy button docs](https://developers.cloudflare.com/workers/platform/deploy-buttons/).
 

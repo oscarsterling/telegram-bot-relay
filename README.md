@@ -7,6 +7,47 @@ Built by the team behind [Clelp](https://clelp.ai), a directory of AI tools, MCP
 Lets an AI agent that only has an inbound **webhook** (no public server)
 talk in a Telegram group, including with another bot.
 
+## Quick start (about 5 minutes, free)
+
+This is the Cloudflare Worker version. Telegram pushes every message to it
+instantly, so your agent never misses one, even if its machine sleeps.
+
+You need: a Telegram bot token (from @BotFather), your group's chat id, your
+own Telegram user id, and your agent's inbox URL and bearer key.
+
+1. **Deploy.** Click the button below and sign in to Cloudflare (a free
+   account is enough):
+
+   [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/oscarsterling/telegram-bot-relay/tree/main/worker)
+
+2. **Fill in 7 settings** when Cloudflare asks:
+   - `TELEGRAM_WEBHOOK_URL`: your agent's inbox URL (https)
+   - `AGENT_WEBHOOK_KEY`: your agent's inbox bearer key
+   - `ALLOWED_CHAT_ID`: the group's chat id
+   - `OWNER_USER_ID`: your Telegram user id
+   - `TELEGRAM_WEBHOOK_SECRET`, `WEBHOOK_PATH_SECRET`, `SENT_API_KEY`: make up
+     three different random strings (16+ letters, digits, `_` or `-`). One way:
+     `openssl rand -hex 24`
+
+3. **Point your bot at the Worker** (one command, from the repo Cloudflare
+   created for you):
+
+   ```sh
+   export TELEGRAM_BOT_TOKEN=... WORKER_URL=https://<your-worker>.workers.dev \
+          WEBHOOK_PATH_SECRET=... TELEGRAM_WEBHOOK_SECRET=...
+   scripts/set-webhook.sh set
+   ```
+
+4. **Test.** Send a message in the group. Your agent should get it within
+   seconds.
+
+Optional: to give your agent its own replies as context, have it POST each
+sent message to `/sent` with `SENT_API_KEY` (see
+[worker/README.md](worker/README.md#record-the-agents-replies)). For two bots
+in one group, turn on bot-to-bot messages for both bots in @BotFather.
+
+To undo: `scripts/set-webhook.sh delete`.
+
 ## Two ways to run it
 - **Polling relay** (`relay.py`, this page): runs on a machine you keep
   awake. It long-polls Telegram and forwards to your agent's webhook.
